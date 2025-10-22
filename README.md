@@ -215,6 +215,7 @@ The current version is tracked in `.release-please-manifest.json`. Release Pleas
 ### Manual Release (if needed)
 
 If you need to create a release manually, you can:
+
 1. Update `.release-please-manifest.json` with the new version
 2. Update `CHANGELOG.md` manually
 3. Create and push a tag:

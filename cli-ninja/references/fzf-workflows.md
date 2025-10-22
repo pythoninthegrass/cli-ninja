@@ -495,6 +495,7 @@ eval "$(fzf --zsh)"   # Zsh
 ```
 
 Default bindings:
+
 - `ctrl-t`: Paste selected files
 - `ctrl-r`: Paste from command history
 - `alt-c`: cd into selected directory

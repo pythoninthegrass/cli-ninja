@@ -524,12 +524,14 @@ This skill includes bundled resources to support CLI navigation:
 ### scripts/
 
 Example scripts demonstrating tool combinations:
+
 - `combo-search.sh` - Common combination workflows
 - `interactive-code-finder.sh` - Interactive ast-grep + fzf workflow
 
 ### references/
 
 Comprehensive guides for each tool:
+
 - `fd-patterns.md` - File finding patterns and flags
 - `rg-patterns.md` - Text search patterns and regex tips
 - `ast-grep-guide.md` - Code structure patterns for Python, Zig, Go, Ruby, JS/TS, Rust
