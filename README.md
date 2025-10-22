@@ -144,39 +144,59 @@ Installation varies by platform (Homebrew on macOS, apt/dnf on Linux, etc.)
 
 ## Development
 
-### Trigger CI
+This project uses [Release Please](https://github.com/googleapis/release-please) to automate releases based on [Conventional Commits](https://www.conventionalcommits.org/).
 
-- Activates when you push a tag matching the pattern v*.*.* (e.g., v0.1.0, v1.2.3)
+### How It Works
 
-### Features
+1. **Make changes and commit** using Conventional Commits format:
+   ```bash
+   git commit -m "feat: add new search pattern for Python"
+   git commit -m "fix: correct typo in fzf examples"
+   git commit -m "docs: update installation instructions"
+   ```
 
-1. **Automatic version detection** - Extracts version number from the git tag
-2. **Version metadata update** - Automatically updates the `version:` field in `cli-ninja/SKILL.md` to match the release tag
-3. **Zip packaging** - Creates `cli-ninja-{VERSION}.zip` containing the entire cli-ninja directory with updated version
-4. **GitHub Release creation** - Automatically creates a release with:
-   - Descriptive title and body
-   - Tool overview and installation instructions
-   - Optional changelog support (if CHANGELOG.md exists)
-   - The zip file as a downloadable asset
+2. **Push to main branch**:
+   ```bash
+   git push origin main
+   ```
 
-### Usage
+3. **Release Please creates a PR** automatically with:
+   - Updated CHANGELOG.md based on your commits
+   - Version bump following semantic versioning
+   - All changes since the last release
 
-To create your first release (v0.1.0):
+4. **Merge the release PR** to trigger:
+   - Git tag creation
+   - GitHub Release creation with auto-generated release notes
+   - Packaging and uploading of `cli-ninja-{VERSION}.zip`
 
+### Conventional Commit Types
+
+- `feat:` - New feature (bumps minor version)
+- `fix:` - Bug fix (bumps patch version)
+- `docs:` - Documentation changes (no version bump)
+- `chore:` - Maintenance tasks (no version bump)
+- `refactor:` - Code refactoring (no version bump)
+- `test:` - Test changes (no version bump)
+
+Add `!` or `BREAKING CHANGE:` footer for breaking changes (bumps major version):
 ```bash
-git add .github/workflows/release.yml
-git commit -m "Add release workflow for packaging cli-ninja skill"
-git tag v0.1.0
-git push origin main
-git push origin v0.1.0
+git commit -m "feat!: redesign skill structure"
 ```
 
-The workflow will automatically:
+### Current Version
 
-1. Update `version: 0.1.0` in cli-ninja/SKILL.md
-2. Package cli-ninja/ into cli-ninja-0.1.0.zip (with the updated version)
-3. Create a GitHub release named "cli-ninja v0.1.0"
-4. Attach the zip file to the release
-5. Include formatted installation instructions
+The current version is tracked in `.release-please-manifest.json`. Release Please manages this automatically.
 
-For subsequent releases, just create and push new tags (e.g., v0.2.0, v1.0.0). The version in SKILL.md will automatically match the tag.
+### Manual Release (if needed)
+
+If you need to create a release manually, you can:
+1. Update `.release-please-manifest.json` with the new version
+2. Update `CHANGELOG.md` manually
+3. Create and push a tag:
+   ```bash
+   git tag v0.2.0
+   git push origin v0.2.0
+   ```
+
+The workflow will package and upload the zip file to the release.

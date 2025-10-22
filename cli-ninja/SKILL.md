@@ -1,7 +1,6 @@
 ---
 name: cli-ninja
 description: Master CLI navigation and code exploration using modern command-line tools. Use this skill when navigating repositories, searching for files/text/code patterns, or working with structured data (JSON/YAML/XML). Provides guidance on fd (file finding), rg (text search), ast-grep (code structure), fzf (interactive selection), jq (JSON), and yq (YAML/XML).
-version: 0.1.0
 ---
 
 # CLI Ninja
