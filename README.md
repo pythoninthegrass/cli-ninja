@@ -224,3 +224,7 @@ If you need to create a release manually, you can:
    ```
 
 The workflow will package and upload the zip file to the release.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=pythoninthegrass/cli-ninja&type=Date)](https://star-history.com/#pythoninthegrass/cli-ninja&Date)
