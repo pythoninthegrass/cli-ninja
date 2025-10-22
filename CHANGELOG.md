@@ -7,3 +7,4 @@
 
 * release 0.1.1 ([dbcc886](https://github.com/pythoninthegrass/cli-ninja/commit/dbcc886203c11a053cbea4cc8895182c8a5c124a))
 * release 0.1.1 ([747b859](https://github.com/pythoninthegrass/cli-ninja/commit/747b8595f8f91fd03bcac904a9265aa09e25f026))
+  * Failed due to CI error
