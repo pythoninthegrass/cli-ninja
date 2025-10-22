@@ -1,0 +1,77 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Update version in SKILL.md
+        run: |
+          VERSION="${{ steps.get_version.outputs.VERSION }}"
+          sed -i "s/^version: .*/version: $VERSION/" cli-ninja/SKILL.md
+
+          # Show the change for verification
+          echo "Updated version in SKILL.md to: $VERSION"
+          grep "^version:" cli-ninja/SKILL.md
+
+      - name: Create cli-ninja zip package
+        run: |
+          cd cli-ninja
+          zip -r ../cli-ninja-${{ steps.get_version.outputs.VERSION }}.zip .
+          cd ..
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          if [ -f CHANGELOG.md ]; then
+            echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+            cat CHANGELOG.md >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "CHANGELOG=Release ${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: cli-ninja v${{ steps.get_version.outputs.VERSION }}
+          body: |
+            ## CLI Ninja v${{ steps.get_version.outputs.VERSION }}
+
+            A Claude skill for mastering CLI navigation and code exploration using modern command-line tools.
+
+            ### Installation
+
+            1. Download `cli-ninja-${{ steps.get_version.outputs.VERSION }}.zip`
+            2. Extract and install in Claude Code
+            3. Invoke the skill when navigating repositories or searching code
+
+            ### Tools Included
+
+            - fd - Fast file finding
+            - rg (ripgrep) - Lightning-fast text search
+            - ast-grep - Code structure search by AST
+            - fzf - Interactive fuzzy selection
+            - jq - JSON processing
+            - yq - YAML/XML processing
+
+            ${{ steps.changelog.outputs.CHANGELOG }}
+          files: |
+            cli-ninja-${{ steps.get_version.outputs.VERSION }}.zip
+          draft: false
+          prerelease: false
