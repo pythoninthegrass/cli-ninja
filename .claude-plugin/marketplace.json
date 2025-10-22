@@ -1,0 +1,26 @@
+{
+  "name": "cli-ninja",
+  "metadata": {
+    "description": "CLI Ninja skill marketplace - Master CLI navigation and code exploration using modern command-line tools"
+  },
+  "owner": {
+    "name": "pythoninthegrass",
+    "email": "pythoninthegrass@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "cli-ninja",
+      "description": "Master CLI navigation and code exploration using modern command-line tools (fd, rg, ast-grep, fzf, jq, yq)",
+      "version": "0.1.1",
+      "source": "./cli-ninja",
+      "author": {
+        "name": "pythoninthegrass",
+        "email": "pythoninthegrass@users.noreply.github.com"
+      },
+      "repository": "https://github.com/pythoninthegrass/cli-ninja",
+      "homepage": "https://github.com/pythoninthegrass/cli-ninja",
+      "keywords": ["cli", "navigation", "search", "code-exploration", "developer-tools"],
+      "category": "developer-tools"
+    }
+  ]
+}

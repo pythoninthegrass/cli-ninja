@@ -110,9 +110,33 @@ fd -e json | fzf --preview 'jq . {}'
 
 ## Installation
 
-1. Download `cli-ninja.zip`
-2. Install in Claude Code (instructions vary by platform)
-3. Invoke the skill when navigating repositories or searching code
+### Option 1: Direct Installation (Recommended)
+
+```bash
+# Add the marketplace
+/plugin marketplace add pythoninthegrass/cli-ninja
+
+# Install the skill
+/plugin install cli-ninja
+```
+
+Or install directly in one command:
+```bash
+/plugin install cli-ninja@pythoninthegrass/cli-ninja
+```
+
+### Option 2: Manual Installation
+
+1. Download `cli-ninja-{version}.zip` from the [latest release](https://github.com/pythoninthegrass/cli-ninja/releases/latest)
+2. Extract and place in your Claude Code plugins directory
+3. Restart Claude Code if necessary
+
+### Using the Skill
+
+Once installed, invoke the skill when navigating repositories or searching code:
+```bash
+/cli-ninja
+```
 
 ## When to Use This Skill
 

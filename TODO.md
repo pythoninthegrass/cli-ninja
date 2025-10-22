@@ -1,3 +1,3 @@
 # TODO
 
-- Generate a changelog (cf. release-please)
+- ~~Generate a changelog (cf. release-please)~~
